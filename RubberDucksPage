@@ -1,0 +1,48 @@
+package pages;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class RubberDucksPage extends AbstractPage {
+
+    @FindBy(className = "name")
+    List<WebElement> duckNames;
+    @FindBy(className = "regular-price")
+    List<WebElement> duckRegularPrices;
+    @FindBy(className = "price")
+    List<WebElement> duckPrices;
+    @FindBy(className = "campaign-price")
+    List<WebElement> duckCampaignPrices;
+
+    public List<String> getDuckNames() {
+        List<String> duckNamesResult = new ArrayList<>();
+        for (WebElement duckName : duckNames) {
+            duckNamesResult.add(duckName.getText());
+        }
+
+        return duckNamesResult;
+    }
+
+    public List<Float> getDuckPrices() {
+        List<Float> duckPricesResult = new ArrayList<>();
+        for (WebElement duckRegularPrice : duckRegularPrices) {
+            duckPricesResult.add(Float.valueOf(duckRegularPrice.getText().substring(1)));
+        }
+
+        for (WebElement duckPrice : duckPrices) {
+            duckPricesResult.add(Float.valueOf(duckPrice.getText().substring(1)));
+        }
+        return duckPricesResult;
+    }
+
+    public List<Float> getDuckCampaignPrices() {
+        List<Float> duckCampaignPricesResult = new ArrayList<>();
+        for (WebElement duckCampaignPrice : duckCampaignPrices) {
+            duckCampaignPricesResult.add(Float.valueOf(duckCampaignPrice.getText().substring(1)));
+        }
+        return duckCampaignPricesResult;
+    }
+}
