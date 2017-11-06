@@ -26,20 +26,7 @@ public class DuckNamesPricesTests {
         DriverFactory.shutDownDriver();
     }
 
-    @Test
-    public void duckNamesShouldBeEqualToDB() throws SQLException {
-        List<String> duckNamesFromUI = new MainPage()
-                .openRubberDucksPage()
-                .getDuckNames();
-
-        List<String> duckNamesFromDB = DBHelper.getProductNames();
-
-        Collections.sort(duckNamesFromDB);
-        Collections.sort(duckNamesFromUI);
-
-        assertEquals(duckNamesFromDB, duckNamesFromUI);
-    }
-
+   
     @Test
     public void checkDuckCount() throws SQLException {
         System.out.println(DBHelper.getProducts().size());
